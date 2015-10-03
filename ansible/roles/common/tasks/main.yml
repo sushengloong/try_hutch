@@ -1,0 +1,7 @@
+---
+# FIXME - remove this rule after adding tasks for configuring iptables
+- name: Shutdown iptables
+  service:
+    name=iptables
+    state=stopped
+  become: yes
