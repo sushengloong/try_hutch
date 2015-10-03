@@ -1,0 +1,21 @@
+---
+- name: Install erlang the dependency
+  yum:
+    name="{{ erlang_rpm_remote_url }}"
+    state=present
+
+- name: Install rabbitmq from remote URL
+  yum:
+    name="{{ rabbitmq_rpm_remote_url }}"
+    state=present
+
+- name: Ensure rabbitmq service is started
+  service:
+    name=rabbitmq-server
+    state=started
+    enabled=yes
+
+- name: Enables the rabbitmq_management plugin
+  rabbitmq_plugin:
+    names=rabbitmq_management
+    state=enabled
